@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import PropTypes from 'prop-types';
+import {observer} from 'mobx-react';
 import './App.css';
 
 import Select from 'react-select';
@@ -10,14 +11,8 @@ import { mapNotNull, convertCountries, convertCurrencies } from './utils';
 const API_COUNTRIES = 'https://api.pleasepay.co.uk/countries';
 const API_CURRENCIES = 'https://api.pleasepay.co.uk/currencies';
 
+@observer
 class App extends Component {
-
-  state = {
-    selectedCountry: '',
-    selectedCurrency: '',
-    countries: [],
-    currencies: [],
-  };
 
   componentDidMount() {
     this.fetchCountries();
@@ -28,26 +23,35 @@ class App extends Component {
     await fetch(API_COUNTRIES)
       .then(response => response.json())
       .then(data => mapNotNull(data.items, convertCountries))
-      .then(countries => this.setState({countries}));
+      .then(countries => this.storeCountries(countries));
   }
 
   async fetchCurrencies() {
     await fetch(API_CURRENCIES)
       .then(response => response.json())
       .then(data => mapNotNull(data.items, convertCurrencies))
-      .then(currencies => this.setState({currencies}));
+      .then(currencies => this.storeCurrencies(currencies));
   }
 
-  handleChangeCountry = (selectedCountry) => {
-    this.setState({ selectedCountry: selectedCountry, selectedCurrency: selectedCountry.currency })
+  storeCountries(countries) {
+    this.props.store.countries = countries;
+  }
+
+  storeCurrencies(currencies) {
+    this.props.store.currencies = currencies;
+  }
+
+  handleChangeCountry = selectedCountry => {
+    this.props.store.selectedCountry = selectedCountry;
+    this.props.store.selectedCurrency = selectedCountry.currency;
   };
 
-  handleChangeCurrency = (selectedCurrency) => {
-    this.setState({ selectedCurrency })
+  handleChangeCurrency = selectedCurrency => {
+    this.props.store.selectedCurrency = selectedCurrency;
   };
 
   render() {
-    const { selectedCountry, selectedCurrency, countries, currencies } = this.state;
+    const { selectedCountry, selectedCurrency, countries, currencies } = this.props.store;
 
     return (
       <div className="App">
@@ -56,7 +60,6 @@ class App extends Component {
           className="hide-options"
           style={{width: '200px'}}
           menuContainerStyle={{width: '200px'}}
-          removeSelected={false}
           onChange={this.handleChangeCountry}
           value={selectedCountry && selectedCountry.value}
           options={countries}
@@ -67,7 +70,6 @@ class App extends Component {
           className="hide-options"
           style={{width: '200px'}}
           menuContainerStyle={{width: '200px'}}
-          removeSelected={false}
           onChange={this.handleChangeCurrency}
           value={selectedCurrency && selectedCurrency.value}
           options={currencies}
@@ -78,3 +80,7 @@ class App extends Component {
 }
 
 export default App;
+
+App.propTypes = {
+  store: PropTypes.object.isRequired,
+};
