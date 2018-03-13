@@ -34,24 +34,24 @@ class App extends Component {
   }
 
   storeCountries(countries) {
-    this.props.store.countries = countries;
+    this.props.store.dropDownModel.countries = countries;
   }
 
   storeCurrencies(currencies) {
-    this.props.store.currencies = currencies;
+    this.props.store.dropDownModel.currencies = currencies;
   }
 
   handleChangeCountry = selectedCountry => {
-    this.props.store.selectedCountry = selectedCountry;
-    this.props.store.selectedCurrency = selectedCountry.currency;
+    this.props.store.dropDownModel.selectedCountry = selectedCountry;
+    this.props.store.dropDownModel.selectedCurrency = selectedCountry.currency;
   };
 
   handleChangeCurrency = selectedCurrency => {
-    this.props.store.selectedCurrency = selectedCurrency;
+    this.props.store.dropDownModel.selectedCurrency = selectedCurrency;
   };
 
   render() {
-    const { selectedCountry, selectedCurrency, countries, currencies } = this.props.store;
+    const { selectedCountry, selectedCurrency, countries, currencies } = this.props.store.dropDownModel;
 
     return (
       <div className="App">

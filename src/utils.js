@@ -1,3 +1,6 @@
+import CurrencyModel from "./CurrencyModel";
+import CountryModel from "./CountryModel";
+
 export function mapNotNull(inputArray, transformerFunction) {
   const inputArrayLength = inputArray.length;
   const outputArray = new Array(inputArrayLength);
@@ -13,21 +16,22 @@ export function mapNotNull(inputArray, transformerFunction) {
 }
 
 export function convertCountries(country) {
-  return {
-    value: country.translations.en,
-    label: country.translations.en,
-    currency: {
-      id: country.preferredCurrency.id,
-      value: country.preferredCurrency.name,
-      label: country.preferredCurrency.name,
-    },
-  }
+  return new CountryModel(
+    country._id,
+    country.translations.en,
+    country.translations.en,
+    new CurrencyModel(
+      country.preferredCurrency.id,
+      country.preferredCurrency.name,
+      country.preferredCurrency.name
+    )
+  );
 }
 
 export function convertCurrencies(currency) {
-  return {
-    value: currency.translations.en,
-    label: currency.translations.en,
-    id: currency._id,
-  }
+  return new CurrencyModel(
+    currency._id,
+    currency.translations.en,
+    currency.translations.en
+  );
 }
