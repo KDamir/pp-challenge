@@ -18,13 +18,6 @@
   padding: 70px 0;
 }
 
-.countryDiv {
-}
-
-.countryDiv {
-  float: none;
-}
-
 label {
   padding: 12px 12px 12px 0;
   display: inline-block;
@@ -48,7 +41,6 @@ select {
   resize: vertical;
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
@@ -56,10 +48,13 @@ select {
 }
 
 .Select-value-label {
-  background-color: white;
-  color: #499950;
+  background-color: transparent;
 }
 
-.Select-value{
-  border: 1px solid #97a934 !important;
+.Select-value {
+  background-color: #e3efff;
+}
+
+.Select-placeholder {
+  background-color: #e3efff;
 }
