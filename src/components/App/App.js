@@ -54,26 +54,41 @@ class App extends Component {
     const { selectedCountry, selectedCurrency, countries, currencies } = this.props.store.dropDownModel;
 
     return (
-      <div className="App">
-        <Select
-          name="countries"
-          className="hide-options"
-          style={{width: '200px'}}
-          menuContainerStyle={{width: '200px'}}
-          onChange={this.handleChangeCountry}
-          value={selectedCountry && selectedCountry.value}
-          options={countries}
-        />
+      <div className="App center">
 
-        <Select
-          name="currencies"
-          className="hide-options"
-          style={{width: '200px'}}
-          menuContainerStyle={{width: '200px'}}
-          onChange={this.handleChangeCurrency}
-          value={selectedCurrency && selectedCurrency.value}
-          options={currencies}
-        />
+
+        <div className="row">
+          <div className="col-25">
+            <label>Country:</label>
+          </div>
+
+          <div className="col-75">
+            <Select
+              name="countries"
+              className="hide-options"
+              menuContainerStyle={{width: '200px'}}
+              onChange={this.handleChangeCountry}
+              value={selectedCountry && selectedCountry.value}
+              options={countries}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-25">
+            <label>Currency:</label>
+          </div>
+          <div className="col-75">
+            <Select
+              name="currencies"
+              className="hide-options"
+              menuContainerStyle={{width: '200px'}}
+              onChange={this.handleChangeCurrency}
+              value={selectedCurrency && selectedCurrency.value}
+              options={currencies}
+            />
+          </div>
+        </div>
       </div>
     );
   }

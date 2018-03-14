@@ -1,7 +1,65 @@
 .App {
-  text-align: center;
+  overflow: hidden;
+  width: 500px;
+  height: 1000px;
 }
 
 .hide-options .Select-clear-zone {
   display: none;
+}
+
+.hide-options {
+  width: 200px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 70px 0;
+}
+
+.countryDiv {
+}
+
+.countryDiv {
+  float: none;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.col-25 {
+  width: 25%;
+  float: left;
+}
+
+.col-75 {
+  width: 75%;
+  float: left;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.Select-value-label {
+  background-color: white;
+  color: #499950;
+}
+
+.Select-value{
+  border: 1px solid #97a934 !important;
 }
