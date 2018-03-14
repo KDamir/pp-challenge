@@ -1,5 +1,5 @@
-import CurrencyModel from "./CurrencyModel";
-import CountryModel from "./CountryModel";
+import CurrencyModel from "./models/CurrencyModel";
+import CountryModel from "./models/CountryModel";
 
 export function mapNotNull(inputArray, transformerFunction) {
   const inputArrayLength = inputArray.length;

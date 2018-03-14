@@ -1,5 +1,5 @@
 import { observable, reaction } from 'mobx';
-import DropDownModel from "./DropDownModel";
+import DropDownModel from "../models/DropDownModel";
 
 export default class DropDownStore {
   @observable dropDownModel = {};
@@ -8,7 +8,6 @@ export default class DropDownStore {
     reaction(
       () => this.toJS(),
       dropDownModel => {
-        console.log(dropDownModel);
         localStorage.setItem('dropDownModel', JSON.stringify({ dropDownModel }))
       }
     );
@@ -18,9 +17,9 @@ export default class DropDownStore {
     return this.dropDownModel.toJS();
   }
 
-  static fromJS(object) {
+  static createStore() {
     const store = new DropDownStore();
-    store.dropDownModel = DropDownModel.fromJS(object);
+    store.dropDownModel = DropDownModel.createModel();
     return store;
   }
 }
