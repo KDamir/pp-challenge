@@ -6,7 +6,7 @@ import './App.css';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
-import { mapNotNull, convertCountries, convertCurrencies } from './utils';
+import { mapNotNull, convertCountries, convertCurrencies } from '../../utils';
 
 const API_COUNTRIES = 'https://api.pleasepay.co.uk/countries';
 const API_CURRENCIES = 'https://api.pleasepay.co.uk/currencies';
